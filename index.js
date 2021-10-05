@@ -1,5 +1,6 @@
 const fs = require('fs');
 const express = require('express');
+const cors = require('cors');
 const Web3 = require('web3');
 
 const PORT = Number(valueOrDefault(process.env.PORT, 42069));
@@ -28,6 +29,9 @@ const VESTING_11 = "0x7a084e2318be17f9fc98171ca93107f3d9546030";
 const VESTING_12 = "0x6fc1d12c203e34c024e13768314bf5539cdc5c73";
 
 const app = express();
+app.use(cors({
+    origin: '*'
+}));
 app.get('/supply', async (req, res) => {
     try {
         let supply = await calculateSupply()
